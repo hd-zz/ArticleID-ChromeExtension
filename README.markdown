@@ -1,5 +1,5 @@
 #README
-This is the code for a Chrome extension to use internally at hd.se(http://hd.se/ "Helsingborgs Dagblad") to simplify for an editor to get the ID of the currently viewd article. We have _good_ URLs that don't include internal IDs and such. This information is irrelevant for the ordinary visitor of the site. When editing the site, however, other metadata can be relevant to get to easily and that's why we wrote this small Chrome extension.
+This is the code for a Chrome extension to use internally at [hd.se](http://hd.se/ "Helsingborgs Dagblad") to simplify for an editor to get the ID of the currently viewd article. We have _good_ URLs that don't include internal IDs and such. This information is irrelevant for the ordinary visitor of the site. When editing the site, however, other metadata can be relevant to get to easily and that's why we wrote this small Chrome extension.
 We're sharing it here so that others can clone the code and modify it for their setup.
 
 ## Adopting for other sites
