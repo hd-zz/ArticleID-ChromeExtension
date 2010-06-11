@@ -2,3 +2,8 @@
 *.pem
 reference
 .DS_Store
+# Editing and patching
+*.swp
+*~
+*.orig
+*.rej
