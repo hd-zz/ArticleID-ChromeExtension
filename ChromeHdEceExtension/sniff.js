@@ -91,8 +91,8 @@ function createArticleData(text, doc) {
  */
 function findComments(parent, recurse) {
   var results= [];
-  for (var childi= 0; childi<parent.childNodes.length; childi++) {
-      var child= parent.childNodes[childi];         
+  for (var childi = 0; childi < parent.childNodes.length; childi++) {
+      var child = parent.childNodes[childi];         
       if (child.nodeType == Node.COMMENT_NODE) {
           results.push(child.data.replace(/^\s+|\s+$/g, ''));
       } else if (recurse && child.nodeType == Node.ELEMENT_NODE) {
