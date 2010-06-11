@@ -78,8 +78,8 @@ function createArticleData(text, doc) {
   }
 
   return {id: artId,
-      source: ((artSource) ? artSource : 'N/A'),
-      sourceId: ((artSourceId) ? artSourceId : 'N/A'),
+      source: artSource,
+      sourceId: artSourceId,
       title: artTitle,
       comments: comCount
   }
