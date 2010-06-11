@@ -1,7 +1,17 @@
+/**
+ * ChromeHdEceExtension doc_start.js
+ *
+ * Initializes the action.
+ * Depends on sniff.js being injected before.
+ *
+ * David Tiselius <david.tiselius@hd.se>
+ */
+
 var artData = getArtData(document);
+
 if (artData != null) {
   /*
-   * Send data to background page that is listening
+   * Send data to listening backgroundpage
    */
   chrome.extension.sendRequest({msg: "articleDocument",
                                 href: location.href,
@@ -9,7 +19,7 @@ if (artData != null) {
                                });
 } else {
   /*
-   * Send data to background page that is listening
+   * Send message to listening backgroundpage
    */
   chrome.extension.sendRequest({msg: "noArtid",
                                 href: location.href});

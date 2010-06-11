@@ -1,13 +1,29 @@
+/**
+ * ChromeHdEceExtension doc_start.js
+ *
+ * Utility functions parsing the currently viewd page.
+ * Used by doc_start.js.
+ *
+ * This is taylored for the hd.se article pages.
+ *
+ * David Tiselius <david.tiselius@hd.se>
+ */
+
+/**
+ * Regexp for the start of the commnent-block we're interessed in.
+ */
 var eidMatch = /^ECEID: /;
 
+/**
+ * Finds the relevant comment block and returns an object with the article
+ * meta data:
+ * {id, source, sourceId, title, comments}
+ */
 function getArtData(doc) {
 
-
   /*
-   * Get the nodes in element pri
-   * see https://developer.mozilla.org/en/DOM/document.evaluate
+   * Get the comment nodes in element bd
    */
-
   var comments = findComments(doc.getElementById('bd'), true);
   var ret = null;
 
@@ -21,6 +37,14 @@ function getArtData(doc) {
   return ret;
 }
 
+/**
+ * Builds the article data object from the comment textblock and the DOM Document.
+ * 
+ * This is assuming that the title of the article is located in the (first)
+ * h1 tag and that a comments-count can be found in an element with id
+ * 'dsq-num-posts' (hd.se uses Disqus).
+ *
+ */
 function createArticleData(text, doc) {
   var lines = text.split("\n");
 
@@ -62,6 +86,9 @@ function createArticleData(text, doc) {
 
 }
 
+/**
+ * Used to get an array of all the comments in a node-tree.
+ */
 function findComments(parent, recurse) {
   var results= [];
   for (var childi= 0; childi<parent.childNodes.length; childi++) {
@@ -72,5 +99,6 @@ function findComments(parent, recurse) {
           results= results.concat(findComments(child));
       }
   }
+
   return results;
 }

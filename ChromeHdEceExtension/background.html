@@ -1,9 +1,21 @@
 <html>
+<!--
+ ChromeHdEceExtension background.html
+ 
+ Holds the article data for all tabs and listens for events from the doc_start.js
+
+ This is also the script responsible for puting the extension icon into the 
+ address-bar of Chrome (by calling chrome.pageAction.show(...)).
+ 
+ David Tiselius <david.tiselius@hd.se>
+-->
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <script>
-    /*
-     * Holder of data for each tab
+    /**
+     * Holder of data for each tab using the tab-id as keys.
+     * The popup.html then uses this map to render the article
+     * meta-data list.
      */
     var tabData = {};
 
@@ -11,7 +23,6 @@
 
 
     if (request.msg == "articleDocument") {
-      //console.log("Tab with id " + sender.tab.id + " has an escenic article in it. It's url is " + request.href);
       /*
        * We have received a map of article meta-data found on the page.
        * Enable the page action icon.
@@ -43,6 +54,9 @@
     }
   });
 
+  /*
+   * Delete the article data associated with tab if it's closed
+   */
   chrome.tabs.onRemoved.addListener(function(tabId) {
     delete tabData[tabId];
   });

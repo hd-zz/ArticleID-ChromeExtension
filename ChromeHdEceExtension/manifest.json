@@ -1,18 +1,29 @@
+/**
+ * ChromeHdEceExtension manifest
+ *
+ * David Tiselius <david.tiselius@hd.se>
+ */
 {
 
  "background_page": "background.html",
 
  "content_scripts": [ {
-      "js": [ "sniff.js", "doc_start.js" ],
-      "matches": ["http://hd.se/*", "http://testweb.hd.se/*", "http://deveditor/*"],
+      "js": ["sniff.js",
+             "doc_start.js"
+            ],
+      "matches": ["http://hd.se/*",
+                  "http://testweb.hd.se/*",
+                  "http://deveditor/*"],
       "run_at": "document_end"
-    } ],
+    }
+ ],
 
  "name": "Hd-EscenicID",
 
- "version": "0.91",
+ "version": "0.92",
 
- "description": "A hd.se chrome extension to view the Escenic-ID of the currently viewed article",
+ "description": "A Chrome extension to view the ID of the currently viewed article.
+ Here made to work for hd.se.",
 
  "icons": {"128": "icon.png"},
 
