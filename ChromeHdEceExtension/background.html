@@ -1,0 +1,52 @@
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <script>
+    /*
+     * Holder of data for each tab
+     */
+    var tabData = {};
+
+    chrome.extension.onRequest.addListener(function(request, sender) {
+
+
+    if (request.msg == "articleDocument") {
+      //console.log("Tab with id " + sender.tab.id + " has an escenic article in it. It's url is " + request.href);
+      /*
+       * We have received a map of article meta-data found on the page.
+       * Enable the page action icon.
+       */
+      tabData[sender.tab.id] = request.articleData;
+      chrome.pageAction.setTitle(
+        {tabId: sender.tab.id,
+         title: 'Klicka för att se data för "' + request.articleData.title + '"'
+        }
+      );
+      chrome.pageAction.setIcon(
+          {tabId: sender.tab.id,
+           path: "browseraction.png"}
+      );
+
+      chrome.pageAction.show(sender.tab.id);
+
+    } else {
+      delete tabData[sender.tab.id]; //if previously loaded with article
+      chrome.pageAction.setTitle(
+        {tabId: sender.tab.id,
+         title: 'Ingen artikeldata'}
+      );
+      chrome.pageAction.setIcon(
+          {tabId: sender.tab.id,
+           path: "browseraction-inact.png"}
+      );
+      chrome.pageAction.show(sender.tab.id);
+    }
+  });
+
+  chrome.tabs.onRemoved.addListener(function(tabId) {
+    delete tabData[tabId];
+  });
+
+    </script>
+  </head>
+</html>

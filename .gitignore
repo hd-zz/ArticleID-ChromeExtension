@@ -1,0 +1,4 @@
+*.crx
+*.pem
+reference
+.DS_Store

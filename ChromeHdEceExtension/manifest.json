@@ -1,0 +1,30 @@
+{
+
+ "background_page": "background.html",
+
+ "content_scripts": [ {
+      "js": [ "sniff.js", "doc_start.js" ],
+      "matches": ["http://hd.se/*", "http://testweb.hd.se/*", "http://deveditor/*"],
+      "run_at": "document_end"
+    } ],
+
+ "name": "Hd-EscenicID",
+
+ "version": "0.91",
+
+ "description": "A hd.se chrome extension to view the Escenic-ID of the currently viewed article",
+
+ "icons": {"128": "icon.png"},
+
+ "page_action": {
+   "default_icon": "browseraction.png",
+   "default_title": "hdEceId",
+   "popup": "popup.html"
+ },
+
+ "permissions": ["tabs",
+                 "http://hd.se/*",
+                 "http://testweb.hd.se/*",
+                 "http://deveditor/*"]
+
+}
