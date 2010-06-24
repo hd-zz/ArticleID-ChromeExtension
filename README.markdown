@@ -24,4 +24,5 @@ For more info on writing extensions go [here](http://code.google.com/chrome/exte
 ## Screenshot
 Using the extension on the hd.se site (article page):
 
-![screenshot](http://github.com/hd/ArticleID-ChromeExtension/tree/master/screenshot.png)
+![screenshot](http://github.com/hd/ArticleID-ChromeExtension/raw/master/screenshot.png)
+             
