@@ -5,7 +5,7 @@ We're sharing it here so that others can clone the code and modify it for their 
 ## Adopting for other sites
 The extension uses a script to pick out text from a *html comment block* that is put on all article pages by our templates.
 
-This is an example of the comments-block:
+This is an example of the used comments-block:
 
      <!--
          ECEID:    722356
@@ -24,4 +24,4 @@ For more info on writing extensions go [here](http://code.google.com/chrome/exte
 ## Screenshot
 Using the extension on the hd.se site (article page):
 
-![screenshot](//github.com/hd/ArticleID-ChromeExtension/raw/master/screenshot.png)
+![screenshot](https://github.com/hd/ArticleID-ChromeExtension/raw/master/screenshot.png)
