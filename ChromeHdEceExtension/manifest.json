@@ -5,37 +5,42 @@
  */
 {
 
- "background_page": "background.html",
+ "manifest_version": 2,
 
- "content_scripts": [ {
+ "name": "Hd-EscenicID",
+ "version": "2.0",
+ "description": "An extension to view the ID of the currently viewed article on hd.se.",
+
+ "permissions": ["tabs",
+                 "http://hd.se/*",
+                 "http://testweb.hd.se/*",
+                 "http://deveditor/*"],
+
+ "background": {
+   "scripts": ["background.js"],
+   "persistent": false
+ },
+
+ "content_scripts": [
+   {
       "js": ["sniff.js",
              "doc_start.js"
             ],
       "matches": ["http://hd.se/*",
                   "http://testweb.hd.se/*",
                   "http://deveditor/*"],
-      "run_at": "document_end"
+      "run_at": "document_idle"
     }
  ],
 
- "name": "Hd-EscenicID",
-
- "version": "0.92",
-
- "description": "A Chrome extension to view the ID of the currently viewed article.
- Here made to work for hd.se.",
 
  "icons": {"128": "icon.png"},
 
  "page_action": {
    "default_icon": "browseraction.png",
    "default_title": "hdEceId",
-   "popup": "popup.html"
- },
+   "default_popup": "popup.html"
+ }
 
- "permissions": ["tabs",
-                 "http://hd.se/*",
-                 "http://testweb.hd.se/*",
-                 "http://deveditor/*"]
 
 }

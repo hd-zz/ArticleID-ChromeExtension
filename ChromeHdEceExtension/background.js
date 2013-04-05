@@ -1,28 +1,23 @@
-<html>
-<!--
- ChromeHdEceExtension background.html
- 
- Holds the article data for all tabs and listens for events from the doc_start.js
+/*
+ * ChromeHdEceExtension background.js
+ *
+ * Holds the article data for all tabs and listens for events from the doc_start.js
+ *
+ * This is also the script responsible for puting the extension icon into the
+ * address-bar of Chrome (by calling chrome.pageAction.show(...)).
+ *
+ * David Tiselius <david.tiselius@hd.se>
+ */
+/**
+ * Holder of data for each tab using the tab-id as keys.
+ * The popup.html then uses this map to render the article
+ * meta-data list.
+ */
+var tabData = {};
 
- This is also the script responsible for puting the extension icon into the 
- address-bar of Chrome (by calling chrome.pageAction.show(...)).
- 
- David Tiselius <david.tiselius@hd.se>
--->
-  <head>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <script>
-    /**
-     * Holder of data for each tab using the tab-id as keys.
-     * The popup.html then uses this map to render the article
-     * meta-data list.
-     */
-    var tabData = {};
+chrome.extension.onMessage.addListener(function(request, sender) {
 
-    chrome.extension.onRequest.addListener(function(request, sender) {
-
-
-    if (request.msg == "articleDocument") {
+    if (request.msg === "articleDocument") {
       /*
        * We have received a map of article meta-data found on the page.
        * Enable the page action icon.
@@ -37,8 +32,8 @@
           {tabId: sender.tab.id,
            path: "browseraction.png"}
       );
-
       chrome.pageAction.show(sender.tab.id);
+
 
     } else {
       delete tabData[sender.tab.id]; //if previously loaded with article
@@ -60,7 +55,3 @@
   chrome.tabs.onRemoved.addListener(function(tabId) {
     delete tabData[tabId];
   });
-
-    </script>
-  </head>
-</html>

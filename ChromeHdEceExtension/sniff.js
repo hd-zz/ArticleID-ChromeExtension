@@ -1,5 +1,5 @@
 /**
- * ChromeHdEceExtension doc_start.js
+ * ChromeHdEceExtension sniff.js
  *
  * Utility functions parsing the currently viewd page.
  * Used by doc_start.js.
@@ -22,9 +22,9 @@ var eidMatch = /^ECEID: /;
 function getArtData(doc) {
 
   /*
-   * Get the comment nodes in element bd
+   * Get the comment nodes from the doc
    */
-  var comments = findComments(doc.getElementById('bd'), true);
+  var comments = findComments(doc, true);
   var ret = null;
 
   for (var i = 0; i < comments.length; ++i) {
@@ -39,7 +39,7 @@ function getArtData(doc) {
 
 /**
  * Builds the article data object from the comment textblock and the DOM Document.
- * 
+ *
  * This is assuming that the title of the article is located in the (first)
  * h1 tag and that a comments-count can be found in an element with id
  * 'dsq-num-posts' (hd.se uses Disqus).
@@ -77,7 +77,8 @@ function createArticleData(text, doc) {
     }
   }
 
-  return {id: artId,
+  return {
+      id: artId,
       source: artSource,
       sourceId: artSourceId,
       title: artTitle,
@@ -92,7 +93,7 @@ function createArticleData(text, doc) {
 function findComments(parent, recurse) {
   var results= [];
   for (var childi = 0; childi < parent.childNodes.length; childi++) {
-      var child = parent.childNodes[childi];         
+      var child = parent.childNodes[childi];
       if (child.nodeType == Node.COMMENT_NODE) {
           results.push(child.data.replace(/^\s+|\s+$/g, ''));
       } else if (recurse && child.nodeType == Node.ELEMENT_NODE) {

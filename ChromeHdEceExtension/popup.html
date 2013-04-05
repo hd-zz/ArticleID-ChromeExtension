@@ -1,154 +1,39 @@
+<!doctype html>
 <html>
 <!--
  ChromeHdEceExtension popup.html
- 
+
  Fetches the article meta-data current tab and renders title and list
- 
+
  David Tiselius <david.tiselius@hd.se>
 -->
 <head>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-
-    <style>
-body {
-  font-family: tahoma, verdana, sans-serif;
-  font-size: 12px;
-  overflow-x: hidden;
-  width: 230px;
-  margin: 0;
-  padding: 0;
-}
-
-#content {
-  background-color: #e54206;
-  color: #fff;
-  border-radius: 8px;
-  width: 214px;
-  margin: 5px;
-  padding: 3px;
-}
-
-#heading {
-  font-weight: bold;
-  background-image: url("http://hd.se/static/media/html/i/bgs/blocklink.png");
-  background-repeat: repeat-x;
-  background-position: 0px 50%;
-  background-color: #042968;
-  color: #fff;
-  padding: 8px;
-  width: 204px;
-  margin-top: -3px;
-  margin-left: -3px;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
-}
-
-.articleDataList {
-  vertical-align: bottom;
-  list-style: none;
-  margin: 3px;
-  padding: 0;
-}
-
-.articleDataList li {
-  font-weight: bold;
-  display: block;
-  margin: 0;
-  padding: 0;
-  border-bottom: 1px solid #da0;
-  padding-bottom: 2px;
-  margin-bottom: 2px;
-}
-
-.articleDataList .data {
-  display: inline;
-  float: right;
-  font-weight: normal;
-}
-
-#badge {
-  background-image: url(browseraction.png);
-  background-repeat: no-repeat;
-  padding-left: 28px;
-  margin-top: 4px;
-  margin-left: 10px;
-  padding-top: 4px;
-  color: #645c67;
-  height: 24px;
-  font-size: 10px;
-  vertical-align: middle;
-}
-
-.msg {
-  font-style: italic;
-  margin: 5px;
-}
-    </style>
-    <script>
-
-/**
- * Runs on onload. Fetches article data through backgroundpage and renders it.
- */
-function main() {
-  chrome.tabs.getSelected(null, function(tab) {
-    var artData = chrome.extension.getBackgroundPage().tabData[tab.id];
-    var content = document.getElementById('content');
-    var heading = document.getElementById('heading');
-    if (artData == null) {
-      heading.innerText = 'Ingen artikeldata';
-      msgDiv = document.createElement('div');
-      msgDiv.className = 'msg';
-      msgDiv.innerText = 'Det finns inget escenic-id associerat med denna sida.';
-      content.appendChild(msgDiv);
-    } else {
-      heading.innerText = artData.title;
-
-      var ul = document.createElement('ul');
-      ul.className = "articleDataList";
-
-      var li1 = document.createElement('li');
-      li1.innerText = 'Ecenic-id ';
-      var s1 = document.createElement('span');
-      s1.className = 'data';
-      s1.innerText = artData.id;
-      li1.appendChild(s1);
-      ul.appendChild(li1);
-
-      var li2 = document.createElement('li');
-      li2.innerText = 'Källa ';
-      var s2 = document.createElement('span');
-      s2.className = 'data';
-      s2.innerText = artData.source;
-      li2.appendChild(s2);
-      ul.appendChild(li2);
-
-      var li3 = document.createElement('li');
-      li3.innerText = 'Källa-id ';
-      var s3 = document.createElement('span');
-      s3.className = 'data';
-      s3.innerText = artData.sourceId;
-      li3.appendChild(s3);
-      ul.appendChild(li3);
-
-      var li4 = document.createElement('li');
-      li4.innerText = 'Antal kommentarer ';
-      var s4 = document.createElement('span');
-      s4.className = 'data';
-      s4.innerText = artData.comments;
-      li4.appendChild(s4);
-      ul.appendChild(li4);
-
-      content.appendChild(ul);
-    }
-  });
-}
-
-</script>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" type="text/css" href="popup.css">
+  <script type="text/javascript" src="popup.js"></script>
 </head>
-<body onload="javascript:main()">
+<body>
   <div id="content">
     <div id="heading">Laddar...</div>
+    <ul class="articleDataList">
+      <li id="artId">Ecenic-id
+        <span class="data">some test text</span>
+      </li>
+      <li id="source">Källa
+        <span class="data"></span>
+      </li>
+      <li id="sourceId">Käll-id
+        <span class="data"></span>
+      </li>
+      <li id="comments">Kommentarer
+        <span class="data"></span>
+      </li>
+    </ul>
   </div>
- <div id="badge">Maila synpunkter och idéer till <a href="mailto:david.tiselius@hd.se">David</a>.</div>
+ <div id="badge">
+   <p class="inner">
+     <a tabindex="-1" href="mailto:david.tiselius@hd.se">Synpunkter, idéer</a>?
+   </p>
+ </div>
 </body>
 </html>
