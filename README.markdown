@@ -11,7 +11,7 @@ This is an example of the comments-block:
          ECEID:    722356
          SOURCE:   newspilot
          SOURCEID: 595182
-      --> 
+      -->
 
 To use this extension on another site you need to adopt the functions in sniff.js. So there is nothing specific to a single cms in the this code. All you need is that the ID (or other relavant metadata) can be identified somehow in the source of the currently viewd page.
 
@@ -24,5 +24,4 @@ For more info on writing extensions go [here](http://code.google.com/chrome/exte
 ## Screenshot
 Using the extension on the hd.se site (article page):
 
-![screenshot](https://github.com/hd/ArticleID-ChromeExtension/raw/master/screenshot.png)
-             
+![screenshot](//github.com/hd/ArticleID-ChromeExtension/raw/master/screenshot.png)
