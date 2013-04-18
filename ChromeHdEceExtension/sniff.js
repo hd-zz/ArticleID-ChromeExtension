@@ -22,9 +22,9 @@ var eidMatch = /^ECEID: /;
 function getArtData(doc) {
 
   /*
-   * Get the comment nodes from the doc
+   * Get the comment nodes from the document head
    */
-  var comments = findComments(doc, true);
+  var comments = findComments(doc.head, true);
   var ret = null;
 
   for (var i = 0; i < comments.length; ++i) {
